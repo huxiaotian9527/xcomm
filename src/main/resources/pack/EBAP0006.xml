@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Pack>
+    <!--
+        PackCode				通讯报文已有编码
+        Desc					通讯报文描述
+        Target					服务方信息id
+        Encoding				通讯报文编码格式
+        Trace					通讯报文缓存标识
+        Root                    根节点
+     -->
+    <PackCode>EBAP0006</PackCode>
+    <Desc>信用卡信息查询</Desc>
+    <Target>socket1</Target>
+    <Encoding>GBK</Encoding>
+    <LogFlag>true</LogFlag>
+    <Root>service</Root>
+
+    <!-- 报文长度信息 -->
+    <LengthInfo>
+        <!-- 字段信息 -->
+        <!--
+            Enable					是否启用报文长度字段信息
+            InfoLen					报文长度字段长度
+            SelfFlag				长度信息是否包含本身
+            Format					进制：8进制、10进制、16进制
+         -->
+        <Enable>true</Enable>
+        <InfoLen>4</InfoLen>
+        <SelfFlag>false</SelfFlag>
+        <Format>10</Format>
+    </LengthInfo>
+    <!-- 发送报文字段信息 -->
+    <Request>
+        <!--公共报文头-->
+        <Field name="Mac" desc="返回码" loop=""  tag="service/SYS_HEAD/Mac"/>
+        <Field name="TargetSysId" desc="返回码"  loop=""  tag="service/SYS_HEAD/TargetSysId"/>
+        <Field name="MsgId" desc="返回码"  loop=""  tag="service/SYS_HEAD/MsgId"/>
+        <Field name="ReturnCode" desc="返回码" loop=""  tag="service/APP_HEAD/ReturnCode"/>
+        <Field name="ReturnMsg" desc="返回码" loop=""  tag="service/APP_HEAD/ReturnMsg"/>
+        <Field name="TranDate" desc="返回码" loop=""  tag="service/APP_HEAD/TranDate"/>
+        <Field name="TranTime" desc="返回码" loop=""  tag="service/APP_HEAD/TranTime"/>
+        <Field name="GlobalSeqNo" desc="返回码" loop=""  tag="service/APP_HEAD/GlobalSeqNo"/>
+        <!--私有域-->
+        <Field name="OtptFile" desc="返回码"  loop="list"  tag="service/BODY/FileArray/OtptFile"/>
+
+    </Request>
+
+    <!-- 收到的响应 -->
+    <Response>
+        <!--公共报文头-->
+        <Field name="Mac" desc="返回码" loop="" tag="service/SYS_HEAD/Mac"/>
+        <Field name="TargetSysId" desc="返回码" loop="" tag="service/SYS_HEAD/TargetSysId"/>
+        <Field name="MsgId" desc="返回码" loop="" tag="service/SYS_HEAD/MsgId"/>
+        <Field name="ReturnCode" desc="返回码" loop="" tag="service/APP_HEAD/ReturnCode"/>
+        <Field name="ReturnMsg" desc="返回码" loop="" tag="service/APP_HEAD/ReturnMsg"/>
+        <Field name="TranDate" desc="返回码" loop="" tag="service/APP_HEAD/TranDate"/>
+        <Field name="TranTime" desc="返回码" loop="" tag="service/APP_HEAD/TranTime"/>
+        <Field name="GlobalSeqNo" desc="返回码" loop="" tag="service/APP_HEAD/GlobalSeqNo"/>
+        <!--私有域-->
+        <Field name="OtptFile" desc="返回码" loop="list" tag="service/BODY/FileArray/OtptFile"/>
+    </Response>
+</Pack>
