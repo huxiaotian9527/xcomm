@@ -147,11 +147,17 @@ public class TargetMapper {
     /**
      * 初始化实例对象
      */
-    public static TargetMapper init(String configFilePath){
+    public static boolean init(String configFilePath){
         if(targetMapper==null){
             new TargetMapper(configFilePath);
         }
-        return targetMapper;
+        if(targetMapper==null){
+            log.debug("服务方配置初始化失败！");
+            return false;
+        }else {
+            log.debug("服务方配置初始化成功！");
+            return true;
+        }
     }
 
     /**

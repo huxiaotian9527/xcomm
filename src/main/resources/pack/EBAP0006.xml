@@ -25,31 +25,31 @@
             Format					进制：8进制、10进制、16进制
          -->
         <Enable>true</Enable>
-        <InfoLen>4</InfoLen>
-        <SelfFlag>false</SelfFlag>
+        <InfoLen>8</InfoLen>
+        <SelfFlag>true</SelfFlag>
         <Format>10</Format>
     </LengthInfo>
     <!-- 发送报文字段信息 -->
     <Request>
         <!--公共报文头-->
-        <Field name="Mac" desc="返回码" loop=""  tag="service/SYS_HEAD/Mac"/>
-        <Field name="TargetSysId" desc="返回码"  loop=""  tag="service/SYS_HEAD/TargetSysId"/>
-        <Field name="MsgId" desc="返回码"  loop=""  tag="service/SYS_HEAD/MsgId"/>
-        <Field name="ReturnCode" desc="返回码" loop=""  tag="service/APP_HEAD/ReturnCode"/>
-        <Field name="ReturnMsg" desc="返回码" loop=""  tag="service/APP_HEAD/ReturnMsg"/>
-        <Field name="TranDate" desc="返回码" loop=""  tag="service/APP_HEAD/TranDate"/>
-        <Field name="TranTime" desc="返回码" loop=""  tag="service/APP_HEAD/TranTime"/>
-        <Field name="GlobalSeqNo" desc="返回码" loop=""  tag="service/APP_HEAD/GlobalSeqNo"/>
+        <Field name="Mac" desc="mac值" loop=""  tag="service/SYS_HEAD/Mac"/>
+        <Field name="TargetSysId" desc="服务消息ID"  loop=""  tag="service/SYS_HEAD/TargetSysId"/>
+        <Field name="MsgId" desc="服务消息ID"  loop=""  tag="service/SYS_HEAD/MsgId"/>
+        <Field name="ServiceCode" desc="请求流水号" loop=""  tag="service/SYS_HEAD/ServiceCode"/>
+        <Field name="ReturnMsg" desc="返回信息" loop=""  tag="service/APP_HEAD/ReturnMsg"/>
+        <Field name="TranDate" desc="交易日期" loop=""  tag="service/APP_HEAD/TranDate"/>
+        <Field name="TranTime" desc="交易时间" loop=""  tag="service/APP_HEAD/TranTime"/>
+        <Field name="GlobalSeqNo" desc="全局流水号" loop=""  tag="service/APP_HEAD/GlobalSeqNo"/>
         <!--私有域-->
-        <Field name="OtptFile" desc="返回码"  loop="list"  tag="service/BODY/FileArray/OtptFile"/>
+        <Field name="test" desc="测试上送"  loop=""  tag="service/BODY/FileArray/OtptFile"/>
 
     </Request>
 
     <!-- 收到的响应 -->
     <Response>
         <!--公共报文头-->
-        <Field name="Mac" desc="返回码" loop="" tag="service/SYS_HEAD/Mac"/>
-        <Field name="TargetSysId" desc="返回码" loop="" tag="service/SYS_HEAD/TargetSysId"/>
+        <Field name="Mac" desc="mac值" loop="" tag="service/SYS_HEAD/Mac"/>
+        <Field name="TargetSysId" desc="服务消息ID" loop="" tag="service/SYS_HEAD/TargetSysId"/>
         <Field name="MsgId" desc="返回码" loop="" tag="service/SYS_HEAD/MsgId"/>
         <Field name="ReturnCode" desc="返回码" loop="" tag="service/APP_HEAD/ReturnCode"/>
         <Field name="ReturnMsg" desc="返回码" loop="" tag="service/APP_HEAD/ReturnMsg"/>
@@ -57,6 +57,6 @@
         <Field name="TranTime" desc="返回码" loop="" tag="service/APP_HEAD/TranTime"/>
         <Field name="GlobalSeqNo" desc="返回码" loop="" tag="service/APP_HEAD/GlobalSeqNo"/>
         <!--私有域-->
-        <Field name="OtptFile" desc="返回码" loop="list" tag="service/BODY/FileArray/OtptFile"/>
+        <Field name="return" desc="测试返回" loop="list" tag="service/BODY/FileArray/OtptFile"/>
     </Response>
 </Pack>

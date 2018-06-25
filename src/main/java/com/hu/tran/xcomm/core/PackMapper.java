@@ -41,15 +41,16 @@ public class PackMapper {
                     doc = sax.read(file);
                 }catch (Exception e){
                     ret = false;
-                    log.error("读取服务方报文"+file.getName()+"异常！",e);
+                    log.error("读取服务方报文"+file.getPath()+"异常！",e);
                     break;
                 }
                 Pack pack = getPack(doc.getRootElement());
                 if(pack==null){
                     ret = false;
-                    log.error("组装服务方报文:"+file.getName().split("\\.")[0]+"异常！");
+                    log.error("加载服务方报文:"+file.getPath()+"异常！");
                     break;
                 }
+                log.debug("加载服务方报文:"+file.getPath()+"成功！");
                 packMap.put(pack.getPackCode(), pack);
             }
             //记录配置文件基础路径
@@ -207,11 +208,17 @@ public class PackMapper {
     /**
      * 初始化实例对象
      */
-    public static PackMapper init(String configFilePath){
+    public static boolean init(String configFilePath){
         if(packMapper==null){
             new PackMapper(configFilePath);
         }
-        return packMapper;
+        if(packMapper==null){
+            log.debug("报文缓存失败！");
+            return false;
+        }else {
+            log.debug("报文缓存成功！");
+            return true;
+        }
     }
 
     /**

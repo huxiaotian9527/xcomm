@@ -1,14 +1,18 @@
 package com.hu.tran.xcomm.core;
 
 import com.hu.tran.xcomm.common.Field;
+import com.hu.tran.xcomm.common.LengthInfo;
 import com.hu.tran.xcomm.common.Pack;
 import com.hu.tran.xcomm.log.LogUtil;
 import lombok.extern.log4j.Log4j;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.XMLWriter;
 
 import java.io.ByteArrayOutputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -64,10 +68,35 @@ public class RequestHandler {
                 i = i+fieldList.size()-1;
             }
         }
+        LengthInfo lengthInfo = pack.getLengthInfo();
         packBaos.write(reqDoc.asXML().getBytes(pack.getEncoding()));
-        if(msgId!=null){
-            //记录发送的报文日志
-            LogUtil.tracePack(msgId,pack.getPackCode(),0,packBaos);
+        String packLen = "";
+        if(lengthInfo.isEnable()){                      //长度字段启用，需要计算报文长度
+            int length = packBaos.size();
+            if(lengthInfo.isSelfFlag()){
+                length = length + lengthInfo.getInfoLen();
+            }
+            if(lengthInfo.getFormat()==10){         //十进制表示
+                packLen = String.format("%0"+lengthInfo.getInfoLen()+"d",length);
+            }
+            packBaos.reset();
+            packBaos.write((packLen+reqDoc.asXML()).getBytes(pack.getEncoding()));
+        }
+        if(msgId!=null){            //记录发送的报文日志
+            //格式化一下，便于阅读
+            OutputFormat format = new OutputFormat();
+            format.setEncoding(pack.getEncoding());						//设置编码
+            format.setNewlines(true);									//是否换行
+            format.setIndent(true);										//缩进
+            format.setIndent("    ");									//用4个空格缩进
+            StringWriter sw = new StringWriter();
+            XMLWriter xmlWriter = new XMLWriter(sw,format);
+            xmlWriter.write(reqDoc);
+            ByteArrayOutputStream logByte = new ByteArrayOutputStream();
+            logByte.write((packLen+sw.toString()).getBytes(pack.getEncoding()));
+            sw.close();
+            xmlWriter.close();
+            LogUtil.tracePack(msgId,pack.getPackCode(),0,logByte);
         }
     }
 

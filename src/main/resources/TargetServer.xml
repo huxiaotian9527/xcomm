@@ -17,10 +17,10 @@
 	    <type>socket</type>
 	    <desc>ESB信贷</desc>
 	    <host>127.0.0.1</host>
-	    <port>13000</port>
-	    <connecttimeout>60000</connecttimeout>
+	    <port>8888</port>
+		<transtimeout>10000</transtimeout>
 	    <connecttrytime>3</connecttrytime>
-	    <transtimeout>65000</transtimeout>
-	    <countonnomsg>300</countonnomsg>
+		<connecttimeout>10000</connecttimeout>
+	    <countonnomsg>1000</countonnomsg>
 	</Server>
 </TargetServer>

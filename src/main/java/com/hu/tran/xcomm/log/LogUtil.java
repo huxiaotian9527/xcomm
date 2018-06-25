@@ -28,9 +28,8 @@ public class LogUtil {
      * 记录报文信息
      * @param msgId				报文处理唯一编号
      * @param packCode			报文类型/编号
-     * @param packStatus		报文记录类型，1代表待发送报文，2代表原始发送报文，3代表原始返回报文，4代表解码返回报文
+     * @param packStatus		报文记录类型，0代表发送报文，1代表返回报文
      * @param baos				报文内容
-     * @return					返回处理结果，TRUE代表处理成功，FALSE代表处理失败
      */
     public static boolean tracePack(String msgId, String packCode, int packStatus, ByteArrayOutputStream baos) {
         //判断报文记录方式
@@ -47,9 +46,8 @@ public class LogUtil {
      * 按报文类型全天整合文件
      * @param msgId				报文处理唯一编号
      * @param packCode			报文类型/编号
-     * @param packStatus		报文记录类型，1代表待发送报文，2代表原始发送报文，3代表原始返回报文，4代表解码返回报文
+     * @param packStatus		报文记录类型，0代表发送报文，1代表返回报文
      * @param baos				报文内容
-     * @return					返回处理结果，TRUE代表处理成功，FALSE代表处理失败
      */
     private static boolean tracePackByMsgType(String msgId, String packCode, int packStatus, ByteArrayOutputStream baos) {
         //判断是否已生成logger
@@ -82,9 +80,8 @@ public class LogUtil {
      * 按报文记录独立文件
      * @param msgId				报文处理唯一编号
      * @param msgType			报文类型/编号
-     * @param packStatus		报文记录类型，1代表待发送报文，2代表原始发送报文，3代表原始返回报文，4代表解码返回报文
+     * @param packStatus		报文记录类型，0代表发送报文，1代表返回报文
      * @param baos				报文内容
-     * @return					返回处理结果，TRUE代表处理成功，FALSE代表处理失败
      */
     private static boolean tracePackByMsgPack(String msgId,String msgType, int packStatus, ByteArrayOutputStream baos) {
         //生成缓存路径
@@ -105,11 +102,11 @@ public class LogUtil {
         }
         try {
             FileOutputStream fos = new FileOutputStream(tracePath + fileName);
+
             fos.write(baos.toByteArray());
             fos.close();
             return true;
         } catch(Exception e) {
-//			e.printStackTrace();
             log.info("记录" + fileDesc + "异常[" + e.getMessage() + "]", e);
             return false;
         }
