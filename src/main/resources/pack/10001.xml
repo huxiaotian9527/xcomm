@@ -8,7 +8,7 @@
         Trace					通讯报文缓存标识
         Root                    根节点
      -->
-    <PackCode>EBAP0006</PackCode>
+    <PackCode>10001</PackCode>
     <Desc>信用卡信息查询</Desc>
     <Target>socket1</Target>
     <Encoding>GBK</Encoding>
@@ -41,7 +41,7 @@
         <Field name="TranTime" desc="交易时间" loop=""  tag="service/APP_HEAD/TranTime"/>
         <Field name="GlobalSeqNo" desc="全局流水号" loop=""  tag="service/APP_HEAD/GlobalSeqNo"/>
         <!--私有域-->
-        <Field name="test" desc="测试上送"  loop=""  tag="service/BODY/FileArray/OtptFile"/>
+        <Field name="ip" desc="测试上送"  loop=""  tag="service/BODY/IdntTp"/>
 
     </Request>
 

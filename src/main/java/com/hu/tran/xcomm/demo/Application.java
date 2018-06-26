@@ -39,8 +39,8 @@ public class Application {
         sendMap.put("TranDate","20180508");
         sendMap.put("TranTime","20180508");
         sendMap.put("GlobalSeqNo","3000501506240286ad09080063e7");
-        sendMap.put("test","123456");
-        String result = XCommService.tran("EBAP0006",sendMap,returnMap);
+        sendMap.put("ip","123456");
+        String result = XCommService.tran("10001",sendMap,returnMap);
         if(result.equals("0000")){              //通讯成功
             for(String str:returnMap.keySet()){
                 System.out.println(str+": "+returnMap.get(str));
