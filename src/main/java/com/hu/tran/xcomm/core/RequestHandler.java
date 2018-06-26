@@ -62,7 +62,7 @@ public class RequestHandler {
                     mapList = new ArrayList<Map<String,String>>();
                     log.info("拼接处理结果异常,循环域结果为空！",e);
                 }
-                if(mapList.size()>0){
+                if(mapList!=null&&mapList.size()>0){
                     putLoopToXml(tempRoot,mapList,fieldList);
                 }
                 i = i+fieldList.size()-1;
