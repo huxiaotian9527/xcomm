@@ -42,8 +42,8 @@
         <Field name="TranTime" desc="交易时间" loop=""  tag="service/APP_HEAD/TranTime"/>
         <Field name="GlobalSeqNo" desc="全局流水号" loop=""  tag="service/APP_HEAD/GlobalSeqNo"/>
         <!--私有域-->
-        <Field name="ip" desc="测试上送"  loop=""  tag="service/BODY/IdntTp"/>
-
+        <Field name="ip" desc="测试上送"  loop="list"  tag="service/BODY/LIST/IdntTp"/>
+        <Field name="host" desc="测试上送"  loop="list"  tag="service/BODY/LIST/Host"/>
     </Request>
 
     <!-- 收到的响应 -->

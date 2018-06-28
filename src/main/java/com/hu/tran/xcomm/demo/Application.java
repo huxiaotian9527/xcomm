@@ -6,6 +6,7 @@ import com.hu.tran.xcomm.core.XCommService;
 import lombok.extern.log4j.Log4j;
 
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +40,16 @@ public class Application {
         sendMap.put("TranDate","20180508");
         sendMap.put("TranTime","20180508");
         sendMap.put("GlobalSeqNo","3000501506240286ad09080063e7");
-        sendMap.put("ip","123456");
+        Map<String,String> map1  = new HashMap<String, String>();
+        map1.put("ip","123456");
+        map1.put("host","123456");
+        Map<String,String> map2  = new HashMap<String, String>();
+        map2.put("ip","654321");
+        map2.put("host","654321");
+        ArrayList list = new ArrayList<Map<String,String>>();
+        list.add(map1);
+        list.add(map2);
+        sendMap.put("list",list);
         String result = XCommService.tran("10001",sendMap,returnMap);
         if(result.equals("0000")){              //通讯成功
             for(String str:returnMap.keySet()){
