@@ -33,10 +33,10 @@ public class Test10010Application {
         Map<String,Object> returnMap = new HashMap<String, Object>();
         sendMap.put("Mac","0000000000001");
         sendMap.put("MsgId","2bc7f1cc-3757-4381-b9c8-5ba787de39aa");
-        sendMap.put("SourceSysId","300050");
-        sendMap.put("ConsumerId","300050");
+        sendMap.put("SourceSysId","200510");
+        sendMap.put("ConsumerId","200510");
         sendMap.put("ServiceCode","02002000005");
-        sendMap.put("ServiceScene","01");
+        sendMap.put("ServiceScene","02");
         sendMap.put("TranDate","20180508");
         sendMap.put("TranTime","104115");
         sendMap.put("TranTellerNo","1937");
@@ -52,6 +52,9 @@ public class Test10010Application {
         sendMap.put("QryPolcyCd","2");
         sendMap.put("RsltTp","2");
         sendMap.put("GtFlMth","2");
+        sendMap.put("IntfId","zhengxin_QuryCustCreditReport");
+        sendMap.put("UsrKey","jisfo238249823423jjijf");
+        sendMap.put("IntVrNo","1");
         String result = XCommService.tran("10010",sendMap,returnMap);
         if(result.equals("0000")){              //通讯成功
             for(String str:returnMap.keySet()){

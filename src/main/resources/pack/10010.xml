@@ -28,6 +28,7 @@
         <InfoLen>8</InfoLen>
         <SelfFlag>false</SelfFlag>
         <Format>10</Format>
+        <ReturnLen>8</ReturnLen>
     </LengthInfo>
     <!-- 发送报文字段信息 -->
     <Request>
@@ -57,6 +58,9 @@
         <Field name="QryPolcyCd" desc="查询策略"  loop=""  tag="service/BODY/QryPolcyCd"/>
         <Field name="RsltTp" desc="结果类型"  loop=""  tag="service/BODY/RsltTp"/>
         <Field name="GtFlMth" desc="获取文件方式"  loop=""  tag="service/BODY/GtFlMth"/>
+        <Field name="IntfId" desc="接口id"  loop=""  tag="service/BODY/IntfId"/>
+        <Field name="UsrKey" desc="用户秘钥"  loop=""  tag="service/BODY/UsrKey"/>
+        <Field name="IntVrNo" desc="接口版本号"  loop=""  tag="service/BODY/IntVrNo"/>
 
     </Request>
 
