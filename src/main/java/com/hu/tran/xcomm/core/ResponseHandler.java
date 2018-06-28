@@ -29,8 +29,19 @@ public class ResponseHandler {
      * @param packBaos
      */
     public static void handlerResponse(String msgId, Pack pack, Map<String,Object> returnMap, ByteArrayOutputStream packBaos) throws Exception{
-        //将应答字节数组按编码转为document文档
-        Document doc =  DocumentHelper.parseText(new String(packBaos.toByteArray(),pack.getEncoding()));
+        //解析响应报文时候，去掉前言
+        int returnLen = pack.getLengthInfo().getReturnLen();
+        Document doc = null;
+        if(returnLen>0){
+            byte[] origin = packBaos.toByteArray();                     //原始报文长度
+            byte[] copy = new byte[origin.length-returnLen];       //截取字段后的长度
+            //截取除长度字段外的xml报文
+            System.arraycopy(origin, returnLen, copy, 0, origin.length - returnLen);
+            doc =  DocumentHelper.parseText(new String(copy,pack.getEncoding()));
+        }else{
+            //将应答字节数组按编码转为document文档
+            doc =  DocumentHelper.parseText(new String(packBaos.toByteArray(),pack.getEncoding()));
+        }
         Element root = doc.getRootElement();
         //遍历请求字段，
         for(int i=0;i<pack.getResponseList().size();i++){

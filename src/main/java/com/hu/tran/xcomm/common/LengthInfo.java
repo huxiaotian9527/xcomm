@@ -14,4 +14,5 @@ public class LengthInfo {
     private int infoLen;					//报文长度字段长度
     private boolean selfFlag;				//长度信息是否包含本身标识位
     private int format;                   //进制(八进制、十进制、十六进制)
+    private int returnLen;               //返回报文长度
 }

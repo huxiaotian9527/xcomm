@@ -202,6 +202,12 @@ public class PackMapper {
         lengthInfo.setInfoLen(Integer.parseInt(infoLen.getText()));
         lengthInfo.setSelfFlag(Boolean.parseBoolean(selfFlag.getText()));
         lengthInfo.setFormat(Integer.parseInt(format.getText()));
+        Element returnLen = request.element("ReturnLen");
+        if(returnLen==null){
+            lengthInfo.setReturnLen(0);
+        }else {
+            lengthInfo.setReturnLen(Integer.parseInt(returnLen.getText()));
+        }
         return lengthInfo;
     }
 

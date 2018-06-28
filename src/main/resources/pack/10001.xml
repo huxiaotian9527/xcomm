@@ -28,6 +28,7 @@
         <InfoLen>8</InfoLen>
         <SelfFlag>false</SelfFlag>
         <Format>10</Format>
+        <ReturnLen>8</ReturnLen>
     </LengthInfo>
     <!-- 发送报文字段信息 -->
     <Request>
