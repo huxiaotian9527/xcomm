@@ -24,9 +24,9 @@
             SelfFlag				长度信息是否包含本身
             Format					进制：8进制、10进制、16进制
          -->
-        <Enable>true</Enable>
+        <Enable>false</Enable>
         <InfoLen>8</InfoLen>
-        <SelfFlag>true</SelfFlag>
+        <SelfFlag>false</SelfFlag>
         <Format>10</Format>
     </LengthInfo>
     <!-- 发送报文字段信息 -->
