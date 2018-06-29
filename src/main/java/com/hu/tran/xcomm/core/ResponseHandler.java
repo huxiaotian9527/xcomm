@@ -93,7 +93,7 @@ public class ResponseHandler {
             sw.close();
             xmlWriter.close();
             //记录发送的报文日志
-            LogUtil.tracePack(msgId,pack.getPackCode(),1,packBaos);
+            LogUtil.tracePack(msgId,pack.getPackCode(),1,logByte);
         }
     }
 
