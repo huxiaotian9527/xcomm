@@ -16,11 +16,12 @@
 		<id>socket1</id>
 	    <type>socket</type>
 	    <desc>ESB信贷</desc>
-	    <host>172.20.12.222</host>
-	    <port>7038</port>
+	    <host>172.20.12.235</host>
+	    <!--<port>7038</port>-->
+	    <port>7077</port>
 		<transtimeout>10000</transtimeout>
 	    <connecttrytime>3</connecttrytime>
-		<connecttimeout>10000</connecttimeout>
+		<connecttimeout>60000</connecttimeout>
 	    <countonnomsg>1000</countonnomsg>
 	</Server>
 
@@ -44,7 +45,7 @@
 		<port>18000</port>
 		<transtimeout>10000</transtimeout>
 		<connecttrytime>3</connecttrytime>
-		<connecttimeout>10000</connecttimeout>
+		<connecttimeout>60000</connecttimeout>
 		<countonnomsg>1000</countonnomsg>
 	</Server>
 </TargetServer>

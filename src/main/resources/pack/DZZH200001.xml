@@ -10,10 +10,10 @@
      -->
     <PackCode>200001</PackCode>
     <Desc>开立电子账户个人</Desc>
-    <Target>socket1</Target>
-    <Encoding>UTF-8</Encoding>
+    <Target>socket2</Target>
+    <Encoding>GBK</Encoding>
     <LogFlag>true</LogFlag>
-    <Root>service</Root>
+    <Root>Document</Root>
 
     <!-- 报文长度信息 -->
     <LengthInfo>
@@ -28,7 +28,23 @@
         <InfoLen>8</InfoLen>
         <SelfFlag>false</SelfFlag>
         <Format>10</Format>
+        <ReturnLen>8</ReturnLen>
     </LengthInfo>
+
+    <!--定长部分字段-->
+    <Constant>
+        <Str name="xmlVer" desc="版本号" len="2" sub=" "/>
+        <Str name="requestsysid" desc="请求方系统简称 " len="4" sub=" "/>
+        <Str name="servicesysid" desc="服务方系统简称" len="4" sub=" "/>
+        <Str name="trancode" desc="服务代码" len="10" sub=" "/>
+        <Str name="msgSendDate" desc="报文发起日期" len="8" sub=" "/>
+        <Str name="msgSendTime" desc="报文发起时间" len="6" sub=" "/>
+        <Str name="msgId" desc="报文消息ID" len="22" sub=" "/>
+        <Str name="msgRefId" desc="报文消息参考号" len="22" sub=" "/>
+        <Str name="direction" desc="报文方向" len="1" sub=" "/>
+        <Str name="reserve" desc="（保留域）" len="20" sub=" "/>
+    </Constant>
+
     <!-- 发送报文字段信息 -->
     <Request>
         <!--公共报文头-->
@@ -65,9 +81,10 @@
         <Field name = "miaccttypcd" desc = "产品小类" loop=""  tag = "Document/Content/miaccttypcd"/>
         <Field name = "fzdqmc" desc = "发展地区名称" loop=""  tag = "Document/Content/fzdqmc"/>
         <Field name = "expiredate" desc = "证件失效日期" loop=""  tag = "Document/Content/expiredate"/>
-        <Field name = "ntwrkchkyn" desc = "是否核查" loop=""  tag = "Document/Content/ntwrkchkyn"/>
+        <Field name = "xmlplatformnbr" desc = "证件失效日期" loop=""  tag = "Document/Content/xmlplatformnbr"/>
+        <!--<Field name = "ntwrkchkyn" desc = "是否核查" loop=""  tag = "Document/Content/ntwrkchkyn"/>
         <Field name = "chkanswercd" desc = "核查应答代码" loop=""  tag = "Document/Content/chkanswercd"/>
-        <Field name = "chkanswerdesc" desc = "核查应答描述" loop=""  tag = "Document/Content/chkanswerdesc"/>
+        <Field name = "chkanswerdesc" desc = "核查应答描述" loop=""  tag = "Document/Content/chkanswerdesc"/>-->
 
     </Request>
 

@@ -1,5 +1,6 @@
 package com.hu.tran.xcomm.demo;
 
+import com.hu.tran.xcomm.common.Constant;
 import com.hu.tran.xcomm.core.PackMapper;
 import com.hu.tran.xcomm.core.TargetMapper;
 import com.hu.tran.xcomm.core.XCommService;
@@ -25,42 +26,55 @@ public class Test200001Application {
         }
         Map<String,Object> sendMap = new HashMap<String, Object>();
         Map<String,Object> returnMap = new HashMap<String, Object>();
-        sendMap.put("firstsysname","xfxd");
-        sendMap.put("firstsysmemucode","cdcode");
-        sendMap.put("firstsysmemuname","201801");
-        sendMap.put("firstsysdate","201801");
-        sendMap.put("firstsystime","1212");
-        sendMap.put("firstsysseq","dwq123");
-        sendMap.put("requesttrancode","CD12");
-        sendMap.put("requestseq","123");
-        sendMap.put("brno","123");
-        sendMap.put("tellerno","123");
-        sendMap.put("authtellerno","123");
-        sendMap.put("reviewtellrno","123");
-        sendMap.put("pageflag","4");
-        sendMap.put("currpage","1");
-        sendMap.put("pagenum","3");
-        sendMap.put("smssendyn","Y");
+        sendMap.put("firstsysname","");
+        sendMap.put("firstsysmemucode","");
+        sendMap.put("firstsysmemuname","");
+        sendMap.put("firstsysdate","");
+        sendMap.put("firstsystime","");
+        sendMap.put("firstsysseq","");
+        sendMap.put("requesttrancode","");
+        sendMap.put("requestseq","ZXYH201806290000014509");
+        sendMap.put("brno","");
+        sendMap.put("tellerno","");
+        sendMap.put("authtellerno","");
+        sendMap.put("reviewtellrno","");
+        sendMap.put("pageflag","");
+        sendMap.put("currpage","");
+        sendMap.put("pagenum","");
+        sendMap.put("smssendyn","N");
         //私有域
         sendMap.put("custidnbr","420102199902123022");
         sendMap.put("custidtyp","0");
-        sendMap.put("customerid","12");
-        sendMap.put("customname","tom");
-        sendMap.put("custphone","17219113882");
+        sendMap.put("customerid","");
+        sendMap.put("customname","孙小康");
+        sendMap.put("custphone","13393863579");
         sendMap.put("medipwd","123456");
         sendMap.put("acctlev","2");
-        sendMap.put("relcardnbr","312421521312");
+        sendMap.put("relcardnbr","6228482372317772011");
         sendMap.put("cardagreementtypcd","VCAD");
-        sendMap.put("innerflag","OUTER");
+        sendMap.put("innerflag","INNER");
         sendMap.put("mediavailyn","Y");
-        sendMap.put("medistatcd","NACT");
-        sendMap.put("mjaccttypcd","123");
-        sendMap.put("miaccttypcd","2312");
+        sendMap.put("medistatcd","ACT");
         sendMap.put("fzdqmc","sz");
-        sendMap.put("expiredate","2018-09-12");
-        sendMap.put("ntwrkchkyn","Y");
-        sendMap.put("chkanswercd","123");
-        sendMap.put("chkanswerdesc","test");
+        sendMap.put("expiredate","20180912");
+        sendMap.put("xmlplatformnbr","1");
+//        sendMap.put("ntwrkchkyn","Y");
+//        sendMap.put("chkanswercd","123");
+//        sendMap.put("chkanswerdesc","test");
+
+        Map<String,String> constantMap  = new HashMap<String, String>();
+        constantMap.put("xmlVer","01");
+        constantMap.put("requestsysid","ZXYH");
+        constantMap.put("servicesysid","DZZH");
+        constantMap.put("trancode","DZZH200001");
+        constantMap.put("msgSendDate","20180629");
+        constantMap.put("msgSendTime","135210");
+        constantMap.put("msgId","ZXYH201806290000014509");
+        constantMap.put("msgRefId","");
+        constantMap.put("direction","1");
+        constantMap.put("reserve","");
+        /*-----------------！私有域字段的name不能和constantMap重名，否则会被覆盖并导致异常！-----------------------------*/
+        sendMap.put(Constant.constantMap,constantMap);              //若有定长字段填充，固定用constantMap来送
         String result = XCommService.tran("200001",sendMap,returnMap);
         if(result.equals("0000")){              //通讯成功
             for(String str:returnMap.keySet()){
