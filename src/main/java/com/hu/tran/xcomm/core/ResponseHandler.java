@@ -6,8 +6,11 @@ import com.hu.tran.xcomm.log.LogUtil;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.XMLWriter;
 
 import java.io.ByteArrayOutputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,8 +35,12 @@ public class ResponseHandler {
         //解析响应报文时候，去掉前言
         int returnLen = pack.getLengthInfo().getReturnLen();
         Document doc = null;
+        String length = "";
         if(returnLen>0){
             byte[] origin = packBaos.toByteArray();                     //原始报文长度
+            byte[] len = new byte[returnLen];           //返回长度字段数组
+            System.arraycopy(origin, 0, len, 0, returnLen);
+            length = new String(len,pack.getEncoding());
             byte[] copy = new byte[origin.length-returnLen];       //截取字段后的长度
             //截取除长度字段外的xml报文
             System.arraycopy(origin, returnLen, copy, 0, origin.length - returnLen);
@@ -72,6 +79,19 @@ public class ResponseHandler {
             }
         }
         if(msgId!=null){
+            //格式化一下，便于阅读
+            OutputFormat format = new OutputFormat();
+            format.setEncoding(pack.getEncoding());						//设置编码
+            format.setNewlines(true);									//是否换行
+            format.setIndent(true);										//缩进
+            format.setIndent("    ");									//用4个空格缩进
+            StringWriter sw = new StringWriter();
+            XMLWriter xmlWriter = new XMLWriter(sw,format);
+            xmlWriter.write(doc);
+            ByteArrayOutputStream logByte = new ByteArrayOutputStream();
+            logByte.write((length+sw.toString()).getBytes(pack.getEncoding()));
+            sw.close();
+            xmlWriter.close();
             //记录发送的报文日志
             LogUtil.tracePack(msgId,pack.getPackCode(),1,packBaos);
         }
