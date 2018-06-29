@@ -28,7 +28,7 @@
         <InfoLen>8</InfoLen>
         <SelfFlag>false</SelfFlag>
         <Format>10</Format>
-        <ReturnLen>8</ReturnLen>
+        <ReturnLen>111</ReturnLen>
     </LengthInfo>
 
     <!--定长部分字段-->
