@@ -85,7 +85,7 @@ public class RequestHandler {
         packBaos.write(reqDoc.asXML().getBytes(pack.getEncoding()));
         String packLen = "";
         if(lengthInfo.isEnable()){                      //长度字段启用，需要计算报文长度
-            int length = packBaos.size()+con.length();
+            int length = packBaos.size()+con.getBytes(pack.getEncoding()).length;
             if(lengthInfo.isSelfFlag()){
                 length = length + lengthInfo.getInfoLen();
             }
