@@ -21,7 +21,7 @@
 	    <port>7077</port>
 		<transtimeout>10000</transtimeout>
 	    <connecttrytime>3</connecttrytime>
-		<connecttimeout>20000</connecttimeout>
+		<connecttimeout>60000</connecttimeout>
 	    <countonnomsg>1000</countonnomsg>
 	</Server>
 
@@ -45,7 +45,7 @@
 		<port>18000</port>
 		<transtimeout>10000</transtimeout>
 		<connecttrytime>3</connecttrytime>
-		<connecttimeout>10000</connecttimeout>
+		<connecttimeout>60000</connecttimeout>
 		<countonnomsg>1000</countonnomsg>
 	</Server>
 </TargetServer>

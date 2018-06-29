@@ -33,7 +33,7 @@ public class Test200001Application {
         sendMap.put("firstsystime","");
         sendMap.put("firstsysseq","");
         sendMap.put("requesttrancode","");
-        sendMap.put("requestseq","ZXYH201806290000014508");
+        sendMap.put("requestseq","ZXYH201806290000014509");
         sendMap.put("brno","");
         sendMap.put("tellerno","");
         sendMap.put("authtellerno","");
@@ -69,7 +69,7 @@ public class Test200001Application {
         constantMap.put("trancode","DZZH200001");
         constantMap.put("msgSendDate","20180629");
         constantMap.put("msgSendTime","135210");
-        constantMap.put("msgId","ZXYH201806290000014508");
+        constantMap.put("msgId","ZXYH201806290000014509");
         constantMap.put("msgRefId","");
         constantMap.put("direction","1");
         constantMap.put("reserve","");
