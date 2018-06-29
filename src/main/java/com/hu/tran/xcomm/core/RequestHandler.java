@@ -1,8 +1,6 @@
 package com.hu.tran.xcomm.core;
 
-import com.hu.tran.xcomm.common.Field;
-import com.hu.tran.xcomm.common.LengthInfo;
-import com.hu.tran.xcomm.common.Pack;
+import com.hu.tran.xcomm.common.*;
 import com.hu.tran.xcomm.log.LogUtil;
 import lombok.extern.log4j.Log4j;
 import org.dom4j.Document;
@@ -14,6 +12,7 @@ import org.dom4j.io.XMLWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -68,6 +67,7 @@ public class RequestHandler {
                 i = i+fieldList.size()-1;
             }
         }
+        //报文长度字段处理
         LengthInfo lengthInfo = pack.getLengthInfo();
         packBaos.write(reqDoc.asXML().getBytes(pack.getEncoding()));
         String packLen = "";
@@ -82,6 +82,21 @@ public class RequestHandler {
             packBaos.reset();
             packBaos.write((packLen+reqDoc.asXML()).getBytes(pack.getEncoding()));
         }
+        //定长字段处理
+        String con = "";
+        if(pack.getConstant()!=null){
+            HashMap<String,String> constantMap = (HashMap<String,String>)sendMap.get(Constant.constantMap);
+            ArrayList<Str> strList = pack.getConstant();
+            StringBuilder sb = new StringBuilder();             //用于拼接定长字符串
+            for(Str str:strList){
+                sb.append(spilt(constantMap.get(str.getName()),str.getLen(),str.getSub()));
+            }
+            con = sb.toString();
+            byte[] origin = packBaos.toByteArray();
+            packBaos.reset();
+            packBaos.write(con.getBytes(pack.getEncoding()));
+            packBaos.write(origin);
+        }
         if(msgId!=null){            //记录发送的报文日志
             //格式化一下，便于阅读
             OutputFormat format = new OutputFormat();
@@ -93,11 +108,29 @@ public class RequestHandler {
             XMLWriter xmlWriter = new XMLWriter(sw,format);
             xmlWriter.write(reqDoc);
             ByteArrayOutputStream logByte = new ByteArrayOutputStream();
-            logByte.write((packLen+sw.toString()).getBytes(pack.getEncoding()));
+            logByte.write((packLen+con+sw.toString()).getBytes(pack.getEncoding()));
             sw.close();
             xmlWriter.close();
             LogUtil.tracePack(msgId,pack.getPackCode(),0,logByte);
         }
+    }
+
+    /**
+     * 定常字段处理
+     */
+    private static String spilt(String value,int len,String sub){
+        String result = "";
+        if(value.length()<len){
+            result = value;
+            for(int i=0;i<len-value.length();i++ ){
+                result = result+sub;
+            }
+        }else if(value.length()==len){
+            result = value;
+        }else {
+            result = value.substring(0,len);
+        }
+        return result;
     }
 
     /**

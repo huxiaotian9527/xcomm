@@ -8,6 +8,8 @@ package com.hu.tran.xcomm.common;
  */
 public class Constant {
 
+    public static final String constantMap = "constantMap";
+
     public static class Target{
         public static final String socketServer= "socket";
 

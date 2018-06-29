@@ -3,6 +3,7 @@ package com.hu.tran.xcomm.core;
 import com.hu.tran.xcomm.common.Field;
 import com.hu.tran.xcomm.common.LengthInfo;
 import com.hu.tran.xcomm.common.Pack;
+import com.hu.tran.xcomm.common.Str;
 import lombok.extern.log4j.Log4j;
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -72,6 +73,7 @@ public class PackMapper {
             log.error("服务方报文的XML字段集合异常！");
             return null;
         }
+        //加载长度信息
         LengthInfo lengthInfo = getLengthINfo(root,"LengthInfo");
         if(lengthInfo==null){
             log.error("服务方报文的XML报文长度信息异常！");
@@ -112,6 +114,44 @@ public class PackMapper {
             log.error("未配置Root字段！");
             return null;
         }
+        //加载定长字段信息
+        ArrayList<Str> strList = null;
+        Element constant = root.element("Constant");
+        if(constant!=null){
+            List<Element> strEle = constant.elements("Str");
+            if(strEle!=null){
+                strList = new ArrayList<Str>();
+                for(Element el : strEle){
+                    Str str = new Str();
+                    String name = el.attributeValue("name");
+                    if(name==null||name.equals("")){
+                        log.error("定长字段name不允许为空！");
+                        return null;
+                    }
+                    str.setName(name);
+                    String length = el.attributeValue("len");
+                    if(length==null||length.equals("")){
+                        log.error("定长字段name不允许为空！");
+                        return null;
+                    }
+                    int len = 0;
+                    try{
+                        len = Integer.parseInt(length);
+                    }catch(Exception e){
+                        log.error("定长字段len配置错误"+e);
+                        return null;
+                    }
+                    str.setLen(len);
+                    String sub = el.attributeValue("sub");
+                    if(sub==null||sub.length()!=1){
+                        log.error("定长字段sub不允许为空,且补充字段只能为单个字符！");
+                        return null;
+                    }
+                    str.setSub(sub);
+                    strList.add(str);
+                }
+            }
+        }
         Pack pack = new Pack();
         pack.setPackCode(packCode.getText());
         pack.setDesc(desc.getText());
@@ -122,6 +162,7 @@ public class PackMapper {
         pack.setRequestList(requestList);
         pack.setResponseList(responseList);
         pack.setLengthInfo(lengthInfo);
+        pack.setConstant(strList);
         return pack;
     }
 

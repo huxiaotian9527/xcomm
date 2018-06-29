@@ -20,5 +20,6 @@ public class Pack {
     private String root;                        //通讯报文根节点
     private ArrayList<Field> requestList;       //请求字段集合
     private ArrayList<Field> responseList;      //响应字段集合
+    private ArrayList<Str> constant;               //定长字段集合
     private LengthInfo lengthInfo;              //报文长度信息
 }

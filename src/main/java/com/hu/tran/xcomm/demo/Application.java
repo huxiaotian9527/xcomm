@@ -1,5 +1,6 @@
 package com.hu.tran.xcomm.demo;
 
+import com.hu.tran.xcomm.common.Constant;
 import com.hu.tran.xcomm.core.PackMapper;
 import com.hu.tran.xcomm.core.TargetMapper;
 import com.hu.tran.xcomm.core.XCommService;
@@ -50,6 +51,11 @@ public class Application {
         list.add(map1);
         list.add(map2);
         sendMap.put("list",list);
+        Map<String,String> constantMap  = new HashMap<String, String>();
+        constantMap.put("test1","abc");
+        constantMap.put("test2","cba");
+        /*-----------------！私有域字段的name不能和constantMap重名，否则会被覆盖并导致异常！-----------------------------*/
+        sendMap.put(Constant.constantMap,constantMap);              //若有定长字段填充，固定用constantMap来送
         String result = XCommService.tran("10001",sendMap,returnMap);
         if(result.equals("0000")){              //通讯成功
             for(String str:returnMap.keySet()){
