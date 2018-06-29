@@ -36,7 +36,7 @@ public class RequestHandler {
         Document reqDoc =  DocumentHelper.createDocument();             //待拼装并发送的xml报文
         reqDoc.setXMLEncoding(pack.getEncoding());
         Element root = reqDoc.addElement(pack.getRoot());
-        //遍历响应字段，
+        //遍历请求配置字段，
         for(int i=0;i<pack.getRequestList().size();i++){
             Element tempRoot = root;
             Field field = pack.getRequestList().get(i);
@@ -67,22 +67,7 @@ public class RequestHandler {
                 i = i+fieldList.size()-1;
             }
         }
-        //报文长度字段处理
-        LengthInfo lengthInfo = pack.getLengthInfo();
-        packBaos.write(reqDoc.asXML().getBytes(pack.getEncoding()));
-        String packLen = "";
-        if(lengthInfo.isEnable()){                      //长度字段启用，需要计算报文长度
-            int length = packBaos.size();
-            if(lengthInfo.isSelfFlag()){
-                length = length + lengthInfo.getInfoLen();
-            }
-            if(lengthInfo.getFormat()==10){         //十进制表示
-                packLen = String.format("%0"+lengthInfo.getInfoLen()+"d",length);
-            }
-            packBaos.reset();
-            packBaos.write((packLen+reqDoc.asXML()).getBytes(pack.getEncoding()));
-        }
-        //定长字段处理
+        //定长字段处理，先拼装，不写入流（报文构成=长度字段+定常部分+xml部分）
         String con = "";
         if(pack.getConstant()!=null){
             HashMap<String,String> constantMap = (HashMap<String,String>)sendMap.get(Constant.constantMap);
@@ -94,10 +79,21 @@ public class RequestHandler {
             }
             sb.append("}");
             con = sb.toString();
-            byte[] origin = packBaos.toByteArray();
+        }
+        //报文长度字段处理
+        LengthInfo lengthInfo = pack.getLengthInfo();
+        packBaos.write(reqDoc.asXML().getBytes(pack.getEncoding()));
+        String packLen = "";
+        if(lengthInfo.isEnable()){                      //长度字段启用，需要计算报文长度
+            int length = packBaos.size()+con.length();
+            if(lengthInfo.isSelfFlag()){
+                length = length + lengthInfo.getInfoLen();
+            }
+            if(lengthInfo.getFormat()==10){         //十进制表示
+                packLen = String.format("%0"+lengthInfo.getInfoLen()+"d",length);
+            }
             packBaos.reset();
-            packBaos.write(con.getBytes(pack.getEncoding()));
-            packBaos.write(origin);
+            packBaos.write((packLen+con+reqDoc.asXML()).getBytes(pack.getEncoding()));
         }
         if(msgId!=null){            //记录发送的报文日志
             //格式化一下，便于阅读
