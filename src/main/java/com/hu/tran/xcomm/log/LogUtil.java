@@ -94,10 +94,10 @@ public class LogUtil {
         String fileName = "";
         String fileDesc = "";
         if(packStatus == Constant.Log.send) {
-            fileName = msgId + "_" + new SimpleDateFormat("HH_mm_ss[SSS]").format(Calendar.getInstance().getTime()) + "[send]";
+            fileName = new SimpleDateFormat("HH_mm_sss[SSS]").format(Calendar.getInstance().getTime())+"_"+msgId + "_"  + "[send]";
             fileDesc = "发送报文";
         }else {
-            fileName = msgId + "_" + new SimpleDateFormat("HH_mm_ss[SSS]").format(Calendar.getInstance().getTime()) + "[recv]";
+            fileName = new SimpleDateFormat("HH_mm_sss[SSS]").format(Calendar.getInstance().getTime())+"_"+msgId + "_"  + "[recv]";
             fileDesc = "返回报文";
         }
         try {
