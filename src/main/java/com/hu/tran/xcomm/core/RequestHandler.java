@@ -88,9 +88,11 @@ public class RequestHandler {
             HashMap<String,String> constantMap = (HashMap<String,String>)sendMap.get(Constant.constantMap);
             ArrayList<Str> strList = pack.getConstant();
             StringBuilder sb = new StringBuilder();             //用于拼接定长字符串
+            sb.append("{H:");
             for(Str str:strList){
                 sb.append(spilt(constantMap.get(str.getName()),str.getLen(),str.getSub()));
             }
+            sb.append("}");
             con = sb.toString();
             byte[] origin = packBaos.toByteArray();
             packBaos.reset();
