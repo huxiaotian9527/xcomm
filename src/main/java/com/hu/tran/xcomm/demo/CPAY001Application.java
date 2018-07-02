@@ -36,8 +36,8 @@ public class CPAY001Application {
         sendMap.put("ConsumerId","200510");
         sendMap.put("ServiceCode","02001000001");
         sendMap.put("ServiceScene","02");
-        sendMap.put("TranDate","20180629");
-        sendMap.put("TranTime","104115");
+        sendMap.put("TranDate","20180702");
+        sendMap.put("TranTime","152510");
         sendMap.put("TranTellerNo","0104");
         Calendar now = Calendar.getInstance(TimeZone.getDefault());
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyyMMdd");
@@ -107,9 +107,9 @@ public class CPAY001Application {
         sendMap.put("CtrNo","");
         sendMap.put("CoprBsnNo","");
         sendMap.put("BsnTp","02006014");
-        sendMap.put("CtrAmt","10000");
+        sendMap.put("CtrAmt","100");
         sendMap.put("CtrIttDt","20180423");
-        sendMap.put("CtrExpDt","20210630");
+        sendMap.put("CtrExpDt","20210430");
         sendMap.put("DbtAmt","");
         sendMap.put("DbtExpDt","");
         sendMap.put("LoanPpsDsc","贷款");
