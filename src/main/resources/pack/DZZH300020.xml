@@ -56,6 +56,7 @@
         <Field name="firstsysseq" desc="第一发起系统的流水号" loop=""  tag="Document/CommonRequestHeader/firstsysseq"/>
         <Field name="requesttrancode" desc="交易发起方交易代码" loop=""  tag="Document/CommonRequestHeader/requesttrancode"/>
         <Field name="requestseq" desc="本交易请求流水号" loop=""  tag="Document/CommonRequestHeader/requestseq"/>
+        <Field name="xmlplatformnbr" desc="平台编号" loop=""  tag="Document/CommonRequestHeader/xmlplatformnbr"/>
         <Field name="brno" desc="机构码: 发起请求的机构" loop=""  tag="Document/CommonRequestHeader/brno"/>
         <Field name="tellerno" desc="柜员号: 发起请求的柜员" loop=""  tag="Document/CommonRequestHeader/tellerno"/>
         <Field name="authtellerno" desc="授权柜员号: 授权时必输" loop=""  tag="Document/CommonRequestHeader/authtellerno"/>
@@ -65,9 +66,9 @@
         <Field name="pagenum" desc="每页记录数" loop=""  tag="Document/CommonRequestHeader/pagenum"/>
         <Field name="smssendyn" desc="是否发送短信Y/N" loop=""  tag="Document/CommonRequestHeader/smssendyn"/>
         <!--私有域-->
-        <Field name = "idType" desc = "证件类型" loop=""  tag = "service/Content/idType"/>
-        <Field name = "idNo" desc = "证件号" loop=""  tag = "service/Content/idNo"/>
-        <Field name = "cifName" desc = "客户名称 " loop=""  tag = "service/Content/cifName"/>
+        <Field name = "idType" desc = "证件类型" loop=""  tag = "Document/Content/idType"/>
+        <Field name = "idNo" desc = "证件号" loop=""  tag = "Document/Content/idNo"/>
+        <Field name = "cifName" desc = "客户名称 " loop=""  tag = "Document/Content/cifName"/>
 
     </Request>
 

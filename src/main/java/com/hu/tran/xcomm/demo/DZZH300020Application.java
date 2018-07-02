@@ -7,8 +7,7 @@ import com.hu.tran.xcomm.core.XCommService;
 import lombok.extern.log4j.Log4j;
 
 import java.net.URLDecoder;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Log4j
 public class DZZH300020Application {
@@ -24,6 +23,13 @@ public class DZZH300020Application {
         if(!TargetMapper.init(targetPath)){
             return;
         }
+
+        Calendar now = Calendar.getInstance(TimeZone.getDefault());
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyyMMdd");
+        sdf.setTimeZone(TimeZone.getDefault());
+
+        String xmlplatformnbr = "200510" + sdf.format(now.getTime()) + getRandString(4, 1);
+
         Map<String,Object> sendMap = new HashMap<String, Object>();
         Map<String,Object> returnMap = new HashMap<String, Object>();
         sendMap.put("firstsysname","");
@@ -33,7 +39,7 @@ public class DZZH300020Application {
         sendMap.put("firstsystime","");
         sendMap.put("firstsysseq","");
         sendMap.put("requesttrancode","");
-        sendMap.put("requestseq","ZXYH201807020000014512");
+        sendMap.put("requestseq","ZXYH201807020000014513");
         sendMap.put("brno","");
         sendMap.put("tellerno","");
         sendMap.put("authtellerno","");
@@ -42,6 +48,7 @@ public class DZZH300020Application {
         sendMap.put("currpage","");
         sendMap.put("pagenum","");
         sendMap.put("smssendyn","N");
+        sendMap.put("xmlplatformnbr",xmlplatformnbr);
         //私有域
         sendMap.put("idType","0");
         sendMap.put("idNo","110108195607175419");
@@ -54,7 +61,7 @@ public class DZZH300020Application {
         constantMap.put("trancode","DZZH300020");
         constantMap.put("msgSendDate","20180702");
         constantMap.put("msgSendTime","135210");
-        constantMap.put("msgId","ZXYH201807020000014512");
+        constantMap.put("msgId","ZXYH201807020000014513");
         constantMap.put("msgRefId","");
         constantMap.put("direction","1");
         constantMap.put("reserve","");
@@ -66,5 +73,36 @@ public class DZZH300020Application {
                 System.out.println(str+": "+returnMap.get(str));
             }
         }
+    }
+
+    /**
+     * 根据长度与类型生成随机字符串
+     * @param length 长度
+     * @param type 类型(1：纯数字；2：纯字母；3：数字字母混合)
+     * @return
+     */
+    public static String getRandString(int length, int type){
+        String retStr = "";
+        String strTable = "";
+        if(type == 1)
+        {
+            strTable = "123456789";
+        }
+        else if(type == 2)
+        {
+            strTable = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz";
+        }
+        else if(type == 3)
+        {
+            strTable = "123456789ABCDEFGHJKLMN123456789PQRSTUVWXYZabcde123456789fghijkmnpqrs123456789tuvwxyz";
+        }
+        Random r = new Random();
+        for (int i = 0; i < length; i++)
+        {
+            int rand = r.nextInt(strTable.length());
+            int n = rand > 1? rand - 1 : rand;
+            retStr += strTable.toCharArray()[n];
+        }
+        return retStr;
     }
 }
