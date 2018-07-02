@@ -33,7 +33,7 @@ public class Test200001Application {
         sendMap.put("firstsystime","");
         sendMap.put("firstsysseq","");
         sendMap.put("requesttrancode","");
-        sendMap.put("requestseq","ZXYH201806290000014511");
+        sendMap.put("requestseq","ZXYH201807020000014511");
         sendMap.put("brno","");
         sendMap.put("tellerno","");
         sendMap.put("authtellerno","");
@@ -43,10 +43,10 @@ public class Test200001Application {
         sendMap.put("pagenum","");
         sendMap.put("smssendyn","N");
         //私有域
-        sendMap.put("custidnbr","420102199902123022");
+        sendMap.put("custidnbr","110108195607175419");
         sendMap.put("custidtyp","0");
         sendMap.put("customerid","");
-        sendMap.put("customname","孙小康");
+        sendMap.put("customname","李龙云");
         sendMap.put("custphone","13393863579");
         sendMap.put("medipwd","123456");
         sendMap.put("acctlev","2");
@@ -67,9 +67,9 @@ public class Test200001Application {
         constantMap.put("requestsysid","ZXYH");
         constantMap.put("servicesysid","DZZH");
         constantMap.put("trancode","DZZH200001");
-        constantMap.put("msgSendDate","20180629");
+        constantMap.put("msgSendDate","20180702");
         constantMap.put("msgSendTime","135210");
-        constantMap.put("msgId","ZXYH201806290000014511");
+        constantMap.put("msgId","ZXYH201807020000014511");
         constantMap.put("msgRefId","");
         constantMap.put("direction","1");
         constantMap.put("reserve","");

@@ -36,8 +36,8 @@ public class Test10010Application {
         sendMap.put("ConsumerId","200510");
         sendMap.put("ServiceCode","02002000005");
         sendMap.put("ServiceScene","02");
-        sendMap.put("TranDate","20180629");
-        sendMap.put("TranTime","104115");
+        sendMap.put("TranDate","20180702");
+        sendMap.put("TranTime","143710");
         sendMap.put("TranTellerNo","6427");
         Calendar now = Calendar.getInstance(TimeZone.getDefault());
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyyMMdd");

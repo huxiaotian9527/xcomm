@@ -14,23 +14,25 @@ import java.util.*;
  * @since 1.0.0
  */
 @Log4j
-public class CCON003Application {
+public class CPUB002Application {
 
     public static final String pack = "/pack";
     public static final String targetFile = "/TargetServer.xml";
 
     public static void main(String[] args) throws Exception{
-        String packPath = URLDecoder.decode(CCON003Application.class.getResource(pack).getPath(),"utf-8");
+        String packPath = URLDecoder.decode(CPUB002Application.class.getResource(pack).getPath(),"utf-8");
         if(!PackMapper.init(packPath)){
             return;
         }
-        String targetPath = URLDecoder.decode(CCON003Application.class.getResource(targetFile).getPath(),"utf-8");
+        String targetPath = URLDecoder.decode(CPUB002Application.class.getResource(targetFile).getPath(),"utf-8");
         if(!TargetMapper.init(targetPath)){
             return;
         }
         Calendar now = Calendar.getInstance(TimeZone.getDefault());
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyyMMdd");
+        java.text.SimpleDateFormat sdfY = new java.text.SimpleDateFormat("yyyyMMddhhmmss");
         sdf.setTimeZone(TimeZone.getDefault());
+        sdfY.setTimeZone(TimeZone.getDefault());
 
         Map<String,Object> sendMap = new HashMap<String, Object>();
         Map<String,Object> returnMap = new HashMap<String, Object>();
@@ -38,8 +40,8 @@ public class CCON003Application {
         sendMap.put("MsgId","2bc7f1cc-3757-4381-b9c8-5ba787de39aa");
         sendMap.put("SourceSysId","200510");
         sendMap.put("ConsumerId","200510");
-        sendMap.put("ServiceCode","02003000004");
-        sendMap.put("ServiceScene","09");
+        sendMap.put("ServiceCode","02002000007");
+        sendMap.put("ServiceScene","01");
         sendMap.put("TranDate",sdf.format(now.getTime()));
         sendMap.put("TranTime","115110");
         sendMap.put("TranTellerNo","0104");
@@ -48,15 +50,21 @@ public class CCON003Application {
         sendMap.put("TranSeqNo",requestNo);
         sendMap.put("GlobalSeqNo",requestNo);
 
-        sendMap.put("IdntTp","101");
-        sendMap.put("IdentNo","110108195607175419");
-        sendMap.put("CstNm","李龙云");
-        sendMap.put("CtrNo","JK180423399863");
-        sendMap.put("CtrSt","");
-        sendMap.put("DbtNo","");
-        sendMap.put("CoprBsnNo","");
-        sendMap.put("ClrDbtFlg","");
-        String result = XCommService.tran("CCON003",sendMap,returnMap);
+        sendMap.put("PushTm",sdfY.format(now.getTime()));
+        sendMap.put("BtchNo","200510" + sdf.format(now.getTime())+ getRandString(2, 1));
+        Map<String,String> map1  = new HashMap<String, String>();
+        map1.put("FileNm","test1");
+        map1.put("FileTp","B0206");//B0206 还款结果文件 B0207 理赔结果文件 B0208 还款计划文件
+        map1.put("BsnAplyNo","200510" + sdf.format(now.getTime())+ getRandString(6, 1));
+        map1.put("RcrdNum","1");
+        ArrayList list = new ArrayList<Map<String,String>>();
+        list.add(map1);
+        sendMap.put("list",list);
+
+
+        sendMap.put("FmSysInd","200510");
+        sendMap.put("TrgtSysInd","300050");
+        String result = XCommService.tran("CPUB002",sendMap,returnMap);
         if(result.equals("0000")){              //通讯成功
             for(String str:returnMap.keySet()){
                 System.out.println(str+": "+returnMap.get(str));
