@@ -28,8 +28,6 @@ public class DZZH300020Application {
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyyMMdd");
         sdf.setTimeZone(TimeZone.getDefault());
 
-        String xmlplatformnbr = "200510" + sdf.format(now.getTime()) + getRandString(4, 1);
-
         Map<String,Object> sendMap = new HashMap<String, Object>();
         Map<String,Object> returnMap = new HashMap<String, Object>();
         sendMap.put("firstsysname","");
@@ -48,7 +46,7 @@ public class DZZH300020Application {
         sendMap.put("currpage","");
         sendMap.put("pagenum","");
         sendMap.put("smssendyn","N");
-        sendMap.put("xmlplatformnbr",xmlplatformnbr);
+        sendMap.put("xmlplatformnbr","1");
         //私有域
         sendMap.put("idType","0");
         sendMap.put("idNo","110108195607175419");

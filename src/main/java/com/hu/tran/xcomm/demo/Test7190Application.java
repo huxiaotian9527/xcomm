@@ -44,16 +44,16 @@ public class Test7190Application {
         sendMap.put("ServiceScene","10");
         sendMap.put("TranDate",sdf.format(now.getTime()));
         sendMap.put("TranTime","115110");
-        sendMap.put("TranTellerNo","0104");
+        sendMap.put("TranTellerNo","9938");
 
         String requestNo = "200510" + sdf.format(now.getTime()) + getRandString(16, 1);
         sendMap.put("TranSeqNo",requestNo);
         sendMap.put("GlobalSeqNo",requestNo);
-        sendMap.put("BranchId","720");
+        sendMap.put("BranchId","101");
 
         sendMap.put("TxnCd","7190");
-        sendMap.put("RgonCd","10");
-        sendMap.put("CstAcctNo","727010100100362752");
+        sendMap.put("RgonCd","05");
+        sendMap.put("CstAcctNo","727010100100326477");
         String result = XCommService.tran("7190",sendMap,returnMap);
         if(result.equals("0000")){              //通讯成功
             for(String str:returnMap.keySet()){
@@ -66,6 +66,7 @@ public class Test7190Application {
      * 根据长度与类型生成随机字符串
      * @param length 长度
      * @param type 类型(1：纯数字；2：纯字母；3：数字字母混合)
+     *
      * @return
      */
     public static String getRandString(int length, int type){
