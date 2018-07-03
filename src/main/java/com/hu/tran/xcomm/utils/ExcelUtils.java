@@ -35,9 +35,9 @@ public class ExcelUtils {
                 String statu = status + "";
                 if (!"1.0".equals(statu.trim())) {
                     if ("".equals(status)||status==null){
-                        sb.append("<Field name = \"" + name + "\" desc = \"" + desc + "\" loop=\"\"  tag = \"service/BODY/" + name + "\"/>" + "\n");
+                        sb.append("<Field name = \"" + name + "\" desc = \"" + desc + "\" loop=\"\"  tag = \"Document/Content/" + name + "\"/>" + "\n");
                     }else{
-                        sb.append("<Field name = \"" + name + "\" desc = \"" + desc + "\" loop=\""+ status +"\"  tag = \"service/BODY/" +status + "/" + name + "\"/>" + "\n");
+                        sb.append("<Field name = \"" + name + "\" desc = \"" + desc + "\" loop=\""+ status +"\"  tag = \"Document/Content/" +status + "/" + name + "\"/>" + "\n");
                     }
                 }
             }
@@ -81,9 +81,9 @@ public class ExcelUtils {
         ExcelUtils obj = new ExcelUtils();
         // 此处为我创建Excel路径：E:/zhanhj/studysrc/jxl下
 //        File fileXml = new File("C:/Users/DELL111/Desktop/test.xlsx");
-        File fileXml = new File("D:/work/xztech/九江-信真-趣店消费信贷/接口/九江信贷系统/联调报文/baozhengjinchaxun.xlsx");
+        File fileXml = new File("D:/work/xztech/九江-信真-趣店消费信贷/接口/九江信贷系统/联调报文/wenjianchuanshutongzhi.xlsx");
 
-        File fileMap = new File("D:/work/xztech/九江-信真-趣店消费信贷/接口/九江信贷系统/联调报文/baozhengjinchaxun.xlsx");
+        File fileMap = new File("D:/work/xztech/九江-信真-趣店消费信贷/接口/九江信贷系统/联调报文/wenjianchuanshutongzhi.xlsx");
         obj.getFromExcel(fileXml);
         System.out.println("----------------------------------------------------------");
         obj.getMapFromExcel(fileMap);
