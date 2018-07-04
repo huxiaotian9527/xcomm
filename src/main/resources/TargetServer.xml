@@ -46,7 +46,7 @@
 		<transtimeout>10000</transtimeout>
 		<connecttrytime>3</connecttrytime>
 		<connecttimeout>60000</connecttimeout>
-		<countonnomsg>1000</countonnomsg>
+		<countonnomsg>300</countonnomsg>
 	</Server>
 
 	<Server>
@@ -58,6 +58,6 @@
 		<transtimeout>10000</transtimeout>
 		<connecttrytime>3</connecttrytime>
 		<connecttimeout>60000</connecttimeout>
-		<countonnomsg>1000</countonnomsg>
+		<countonnomsg>300</countonnomsg>
 	</Server>
 </TargetServer>

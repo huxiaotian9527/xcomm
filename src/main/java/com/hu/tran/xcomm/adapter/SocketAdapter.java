@@ -29,7 +29,11 @@ public class SocketAdapter {
             return;
         }
         if(send(socket,packBaos)){                       //发送消息
+            log.debug("---准备接收响应报文");
             receive(socket,packBaos,socketServer.getConnectTimeout(),socketServer.getCountOnNoMsg());
+            if(packBaos.size()>0){
+                log.debug("----接收响应报文成功！");
+            }
         }
         try {
             socket.close();
@@ -115,6 +119,7 @@ public class SocketAdapter {
                 } else {
                     //未开始接收报文
                     if((nowTime - startTime) > (1000000l * timeout)) {
+                        log.debug("---接口响应超时，未接收到响应报文！");
                         break;
                     }
                 }
