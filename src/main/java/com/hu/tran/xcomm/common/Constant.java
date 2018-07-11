@@ -17,7 +17,7 @@ public class Constant {
 
     public static class Log{
         public static final String logType= "logPack";          //按每次报文记录日志
-        public static final String logPath= "/packLog";         //报文日志路径
+        public static final String logPath= "/logs/packLog";         //报文日志路径
 
         public static final int send = 0;
         public static final int recv = 1;

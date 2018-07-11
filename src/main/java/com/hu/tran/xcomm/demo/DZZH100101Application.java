@@ -7,8 +7,10 @@ import com.hu.tran.xcomm.core.XCommService;
 import lombok.extern.log4j.Log4j;
 
 import java.net.URLDecoder;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Log4j
 public class DZZH100101Application {
@@ -33,7 +35,7 @@ public class DZZH100101Application {
         sendMap.put("firstsystime","");
         sendMap.put("firstsysseq","");
         sendMap.put("requesttrancode","");
-        sendMap.put("requestseq","ZXYH201807020000024525");
+        sendMap.put("requestseq","ZXYH"+new Date().getTime());
         sendMap.put("brno","");
         sendMap.put("tellerno","");
         sendMap.put("authtellerno","");
@@ -62,7 +64,7 @@ public class DZZH100101Application {
         constantMap.put("trancode","DZZH100101");
         constantMap.put("msgSendDate","20180702");
         constantMap.put("msgSendTime","135210");
-        constantMap.put("msgId","ZXYH201807020000024525");
+        constantMap.put("msgId","ZXYH"+UUID.randomUUID().toString());
         constantMap.put("msgRefId","");
         constantMap.put("direction","1");
         constantMap.put("reserve","");

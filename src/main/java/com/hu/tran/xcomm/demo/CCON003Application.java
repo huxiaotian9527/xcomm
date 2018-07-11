@@ -51,7 +51,7 @@ public class CCON003Application {
         sendMap.put("IdntTp","101");
         sendMap.put("IdentNo","110108195607175419");
         sendMap.put("CstNm","李龙云");
-        sendMap.put("CtrNo","JK180423399863");
+//        sendMap.put("CtrNo","JK180423399863");
         sendMap.put("CtrSt","");
         sendMap.put("DbtNo","");
         sendMap.put("CoprBsnNo","");
