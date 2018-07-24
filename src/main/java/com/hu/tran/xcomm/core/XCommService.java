@@ -59,7 +59,7 @@ public class XCommService {
         try{
             ResponseHandler.handlerResponse(msgId,pack,returnMap,packBaos);
         }catch (Exception e){
-            log.debug(packCode+"解析请求报文异常！",e);
+            log.debug(packCode+"解析响应报文异常！",e);
             return "9005";
         }
         return "0000";
